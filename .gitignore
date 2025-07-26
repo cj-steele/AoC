@@ -1,0 +1,6 @@
+/.venv/
+/inputs/
+/.idea/
+*/__pycache__/*
+
+
