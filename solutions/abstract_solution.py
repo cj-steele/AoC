@@ -46,7 +46,9 @@ class Solution(abc.ABC):
         if response.status_code != 200:
             print(f'Error: Failed to download input (status {response.status_code})', file=sys.stderr)
             if response.status_code == 404:
-                print('Day might not be available yet', file=sys.stderr)
+                print(
+                    'The input data file might not be available for this day or it might be mentioned in the task description.'
+                    'Re-read the task and add the input data as a new file or commandline argument.', file=sys.stderr)
             return None
 
         # Save the input for future use
@@ -65,13 +67,13 @@ class Solution(abc.ABC):
         pass
 
     @classmethod
-    def run_solution(cls: Type[T], year: int, day: int) -> None:
+    def run_solution(cls: Type[T], year: int, day: int, input_data: str = None) -> None:
         """Dynamically import and run the solution for a specific day."""
         try:
             module_name = f"solutions.{year}.day{day:02d}"
             module = __import__(module_name, fromlist=[f"Day{day:02d}"])
             solution_class = getattr(module, f"Day{day:02d}")
-            solution = solution_class(year, day)
+            solution = solution_class(year, day, input_data)
 
             print(f"--- {year} Day {day} ---")
             print("Part 1:", solution.solve_part_1())
