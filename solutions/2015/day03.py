@@ -19,9 +19,7 @@ class Day03(Solution):
     """
 
     def __init__(self, year: int, day: int, input_data: str = None):
-        super().__init__(year, day)
-        if input_data is not None:
-            self.input = input_data.strip()
+        super().__init__(year, day, input_data)
 
     def move(self, direction: str) -> tuple[int, int]:
         directions = {'^': (0, 1), 'v': (0, -1), '>': (1, 0), '<': (-1, 0)}

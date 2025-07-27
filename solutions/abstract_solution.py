@@ -9,10 +9,13 @@ T = TypeVar('T', bound='Solution')
 
 
 class Solution(abc.ABC):
-    def __init__(self, year: int, day: int):
+    def __init__(self, year: int, day: int, input_data: str):
         self.year = year
         self.day = day
-        self.input = self.get_aoc_input()
+        if input_data is None:
+            self.input = self.get_aoc_input()
+        else:
+            self.input = input_data.strip()
 
     def get_aoc_input(self) -> Optional[str]:
         """

@@ -29,9 +29,7 @@ class Day01(Solution):
     """
 
     def __init__(self, year: int, day: int, input_data: str = None):
-        super().__init__(year, day)
-        if input_data is not None:
-            self.input = input_data.strip()
+        super().__init__(year, day, input_data)
 
     def solve_part_1(self) -> int:
         return self.input.count('(') - self.input.count(')')
